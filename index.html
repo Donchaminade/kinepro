@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francois Adjolou | Kinésithérapeute d'État</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .mirror-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .mirror-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+            z-index: 1;
+            opacity: 0.7;
+        }
+        
+        .mirror-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            transition: width 1s ease-in-out;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        .animate-hero-zoom { animation: heroZoom 6s ease-in-out infinite; }
+        @keyframes heroHalo {
+            0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+            50% { box-shadow: 0 0 60px 20px rgba(59,130,246,0.15); }
+            100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+        }
+        .animate-hero-halo { animation: heroHalo 6s ease-in-out infinite; }
+
+        @keyframes skillFade {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-skill-fade {
+            opacity: 0;
+            animation: skillFade 1s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marqueeRtl {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+        .animate-marquee-rtl {
+            animation: marqueeRtl 30s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 transition-colors duration-500">
+    <!-- LOADER ANIMÉ -->
+    <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-700">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <span class="text-blue-600 font-bold text-xl animate-pulse">Chargement...</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-bone text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-semibold text-gray-800">KinéPro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="text-blue-600 font-medium hover:text-blue-800 transition">Accueil</a>
+                    <a href="#services" class="text-gray-600 font-medium hover:text-blue-600 transition">Services</a>
+                    <a href="#experience" class="text-gray-600 font-medium hover:text-blue-600 transition">Expérience</a>
+                    <a href="#portfolio" class="text-gray-600 font-medium hover:text-blue-600 transition">Portfolio</a>
+                    <a href="#temoignages" class="text-gray-600 font-medium hover:text-blue-600 transition">Témoignages</a>
+                    <a href="#contact" class="text-gray-600 font-medium hover:text-blue-600 transition">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden focus:outline-none" title="Menu">
+                    <i class="fas fa-bars text-2xl text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu slide-in -->
+        <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 flex flex-col p-8 space-y-6 md:hidden">
+            <button id="close-mobile-menu" class="self-end mb-8" title="Fermer le menu"><i class="fas fa-times text-2xl text-gray-600"></i></button>
+            <a href="#accueil" class="text-blue-600 font-medium hover:text-blue-800 transition">Accueil</a>
+            <a href="#services" class="text-gray-600 font-medium hover:text-blue-600 transition">Services</a>
+            <a href="#experience" class="text-gray-600 font-medium hover:text-blue-600 transition">Expérience</a>
+            <a href="#portfolio" class="text-gray-600 font-medium hover:text-blue-600 transition">Portfolio</a>
+            <a href="#temoignages" class="text-gray-600 font-medium hover:text-blue-600 transition">Témoignages</a>
+            <a href="#contact" class="text-gray-600 font-medium hover:text-blue-600 transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- PARTICULES MÉDICALES EN FOND -->
+    <div id="medical-particles" class="fixed inset-0 -z-10 pointer-events-none"></div>
+
+    <!-- Hero Section (portrait animé, image agrandie) -->
+    <section id="accueil" class="py-20 bg-gradient-to-r from-blue-50 to-green-50">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex flex-col space-y-8 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                    HÈZIYÈ FRANÇOIS ADJOLOU N'GANI <br><span class="text-blue-600 text-2xl md:text-3xl block mt-2">PHYSIOTHÉRAPEUTE</span>
+                </h1>
+                <p class="text-lg text-gray-600">
+                    Kinésithérapeute, professionnel de santé spécialisé dans le traitement des troubles moteurs et des douleurs musculaires. Grâce à mes compétences en rééducation fonctionnelle et en thérapie manuelle, j'aide mes patients à améliorer leur qualité de vie au quotidien.
+                </p>
+                <div class="flex flex-col space-y-2 text-gray-700 text-base">
+                    <span><i class="fas fa-map-marker-alt text-blue-600 mr-2"></i> Margo, Avéji-Lomé</span>
+                    <span><i class="fas fa-envelope text-blue-600 mr-2"></i> francois.h.adjolou.ngani@gmail.com</span>
+                    <span><i class="fas fa-phone-alt text-blue-600 mr-2"></i> +228 988 861 65</span>
+                    <span><i class="fas fa-id-card text-blue-600 mr-2"></i> Permis catégorie B</span>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition shadow-lg">
+                        Prendre rendez-vous
+                    </a>
+                    <a href="#services" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
+                        Voir les services
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center animate-fade-in">
+                <div class="relative group">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Portrait professionnel" class="rounded-2xl w-[350px] h-[520px] md:w-[420px] md:h-[620px] object-cover shadow-2xl border-4 border-blue-200 transition-transform duration-700 group-hover:scale-105 animate-hero-zoom max-w-full">
+                    <div class="absolute inset-0 rounded-2xl pointer-events-none animate-hero-halo"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6 rounded-xl bg-gray-50 hover:shadow-lg transition">
+                    <div class="stats-number" id="years-counter">0</div>
+                    <p class="text-gray-600 mt-2">Années d'expérience</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 hover:shadow-lg transition">
+                    <div class="stats-number" id="patients-counter">0</div>
+                    <p class="text-gray-600 mt-2">Patients traités</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 hover:shadow-lg transition">
+                    <div class="stats-number" id="satisfaction-counter">0</div>
+                    <p class="text-gray-600 mt-2">% Satisfaction</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 hover:shadow-lg transition">
+                    <div class="stats-number" id="techniques-counter">0</div>
+                    <p class="text-gray-600 mt-2">Techniques maîtrisées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (adaptée du CV) -->
+    <section id="services" class="py-20 bg-gradient-to-r from-blue-100 via-white to-blue-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 animate-on-scroll">Mes Services</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto animate-on-scroll">
+                    Une prise en charge personnalisée, basée sur l'expérience terrain et les dernières avancées en kinésithérapie.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-home text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Suivi à domicile</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Suivi et rééducation de plus de 90 patients à leur domicile, avec des programmes adaptés à chaque situation.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-running text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Rééducation sportive</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Prise en charge des sportifs (football, tennis, etc.), préparation physique, prévention et récupération après blessure.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-user-md text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Rééducation post-opératoire</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Programmes personnalisés après chirurgie (main, genou, épaule, etc.), pour un retour optimal à la mobilité.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-pink-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-spa text-pink-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Massages thérapeutiques</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Massages de relaxation et thérapeutiques pour sportifs, staff, et patients de tout âge.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-apple-alt text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Éducation nutritionnelle</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Conseils et ateliers sur la nutrition du sportif et la prévention des blessures.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 mirror-card group">
+                    <div class="flex items-center mb-4 p-6">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-heartbeat text-indigo-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Soins gériatriques</h3>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-600 mb-4">Accompagnement et soins spécifiques pour les personnes âgées, en compétition ou à domicile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (timeline animée, icônes médicales) -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 animate-on-scroll">Expériences Professionnelles</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="relative">
+                <div class="hidden md:block absolute left-1/2 h-full w-1 bg-blue-100 transform -translate-x-1/2"></div>
+                <div class="space-y-16">
+                    <!-- Freelance -->
+                    <div class="relative flex flex-col md:flex-row items-center animate-on-scroll group">
+                        <div class="hidden md:flex absolute left-1/2 h-10 w-10 bg-blue-600 rounded-full -ml-5 z-10 transform -translate-x-1/2 items-center justify-center shadow-lg">
+                            <i class="fas fa-user-nurse text-white text-2xl"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-bold text-gray-800">Kinésithérapeute indépendant</h3>
+                            <p class="text-blue-600 font-medium">Mars 2024 - Présent</p>
+                            <ul class="list-disc ml-6 text-gray-700">
+                                <li>Suivi de plus de 90 patients à domicile</li>
+                                <li>Rééducation, relaxation, massage, exercices pour plus de 100 patients sur une même journée</li>
+                            </ul>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+                    <!-- Vice Cup 2023 -->
+                    <div class="relative flex flex-col md:flex-row items-center animate-on-scroll group">
+                        <div class="hidden md:flex absolute left-1/2 h-10 w-10 bg-green-600 rounded-full -ml-5 z-10 transform -translate-x-1/2 items-center justify-center shadow-lg">
+                            <i class="fas fa-table-tennis-paddle-ball text-white text-2xl"></i>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <h3 class="text-xl font-bold text-gray-800">Vice Cup 2023 – Kinésithérapeute sportif (AAT)</h3>
+                            <p class="text-green-600 font-medium">Septembre 2023</p>
+                            <ul class="list-disc ml-6 text-gray-700">
+                                <li>Suivi et ajustement des traitements pour joueurs de tennis</li>
+                                <li>Rééducation post-opératoire de 10 entraîneurs</li>
+                                <li>Massages thérapeutiques et de relaxation pour plus de 20 compétiteurs</li>
+                                <li>Accompagnement gériatrique pour tout le staff</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- National Football League -->
+                    <div class="relative flex flex-col md:flex-row items-center animate-on-scroll group">
+                        <div class="hidden md:flex absolute left-1/2 h-10 w-10 bg-purple-600 rounded-full -ml-5 z-10 transform -translate-x-1/2 items-center justify-center shadow-lg">
+                            <i class="fas fa-futbol text-white text-2xl"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-bold text-gray-800">Ligue Nationale de Football U15/U17 – Kinésithérapeute sportif</h3>
+                            <p class="text-purple-600 font-medium">2022 - 2023</p>
+                            <ul class="list-disc ml-6 text-gray-700">
+                                <li>Accompagnement de plus de 40 joueurs avant, pendant et après les matchs</li>
+                                <li>Rééducation post-opératoire et réadaptation de tous les joueurs</li>
+                                <li>Massages thérapeutiques et de relaxation pour tout le staff</li>
+                                <li>Soins gériatriques</li>
+                            </ul>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+                    <!-- D2 -->
+                    <div class="relative flex flex-col md:flex-row items-center animate-on-scroll group">
+                        <div class="hidden md:flex absolute left-1/2 h-10 w-10 bg-yellow-600 rounded-full -ml-5 z-10 transform -translate-x-1/2 items-center justify-center shadow-lg">
+                            <i class="fas fa-medkit text-white text-2xl"></i>
+                        </div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <h3 class="text-xl font-bold text-gray-800">Championnat D2 Togolais (AGAZA FC) – Kinésithérapeute sportif</h3>
+                            <p class="text-yellow-600 font-medium">2021 - 2022</p>
+                            <ul class="list-disc ml-6 text-gray-700">
+                                <li>Accompagnement des joueurs titulaires avant, pendant et après les matchs</li>
+                                <li>Traitement des blessures à domicile</li>
+                                <li>Éducation nutritionnelle des joueurs</li>
+                                <li>Préparation physique et séances d'étirement pour joueurs et staff</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="py-20 bg-gradient-to-r from-blue-50 via-white to-blue-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 animate-on-scroll">Éducation & Certifications</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
+                <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition duration-300 mirror-card">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2"><i class="fas fa-certificate text-blue-600 mr-2"></i>Centre de formation Sopodiva</h3>
+                    <p class="text-blue-600 font-medium">Certification en anglais</p>
+                    <p class="text-gray-700">Accra, Spintex</p>
+                    <p class="text-gray-500">Octobre 2023 - Décembre 2023</p>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition duration-300 mirror-card">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2"><i class="fas fa-graduation-cap text-blue-600 mr-2"></i>École Nationale des Auxiliaires Médicaux (ENAM-L)</h3>
+                    <p class="text-blue-600 font-medium">Diplôme professionnel en sciences de la santé, option kinésithérapie</p>
+                    <p class="text-gray-700">Lomé - Togo</p>
+                    <p class="text-gray-500">2019 - 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-50 via-white to-blue-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 animate-on-scroll">Compétences</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4"><i class="fas fa-user-md mr-2"></i>Compétences techniques</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.1s"><span class="mr-3 text-blue-500"><i class="fas fa-stethoscope"></i></span>Évaluation fonctionnelle</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.2s"><span class="mr-3 text-green-500"><i class="fas fa-hand-holding-medical"></i></span>Thérapie manuelle</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.3s"><span class="mr-3 text-purple-500"><i class="fas fa-dumbbell"></i></span>Rééducation</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.4s"><span class="mr-3 text-pink-500"><i class="fas fa-brain"></i></span>Gestion du stress</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.5s"><span class="mr-3 text-yellow-500"><i class="fas fa-book-medical"></i></span>Éducation thérapeutique</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4"><i class="fas fa-heartbeat mr-2"></i>Compétences humaines</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.6s"><span class="mr-3 text-red-500"><i class="fas fa-heart"></i></span>Empathie et écoute active</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.7s"><span class="mr-3 text-indigo-500"><i class="fas fa-users"></i></span>Travail en équipe</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.8s"><span class="mr-3 text-orange-500"><i class="fas fa-hourglass-half"></i></span>Patience et persévérance</li>
+                        <li class="flex items-center animate-skill-fade" style="animation-delay:0.9s"><span class="mr-3 text-teal-500"><i class="fas fa-comments"></i></span>Communication efficace</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 animate-on-scroll">Galerie de Mes Interventions</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto animate-on-scroll">
+                    Quelques exemples de mes réalisations et approches thérapeutiques.
+                </p>
+            </div>
+            
+            <div class="filter-buttons flex justify-center space-x-4 mb-12 animate-on-scroll">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg filter-btn active" data-filter="all">Tous</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg filter-btn" data-filter="post-op">Post-opératoire</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg filter-btn" data-filter="sportif">Sportif</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg filter-btn" data-filter="manuel">Manuel</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg filter-btn" data-filter="autre">Autre</button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll" id="portfolio-grid">
+                <!-- Item 1 -->
+                <div class="portfolio-item post-op">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Rééducation genou post-op" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Rééducation post-LCA</h3>
+                                <p class="text-gray-200">Programme personnalisé après reconstruction du ligament croisé antérieur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="portfolio-item sportif">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Rééducation sportive" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Athlète professionnel</h3>
+                                <p class="text-gray-200">Prise en charge spécifique pour sportifs de haut niveau</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="portfolio-item manuel">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Thérapie manuelle" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Thérapie vertébrale</h3>
+                                <p class="text-gray-200">Techniques spécifiques pour soulager les douleurs cervicales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="portfolio-item post-op">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Rééducation épaule" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Rééducation prothèse épaule</h3>
+                                <p class="text-gray-200">Programme spécifique après chirurgie prothétique</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="portfolio-item manuel">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Massage thérapeutique" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Massage thérapeutique</h3>
+                                <p class="text-gray-200">Approche spécifique pour détendre les tensions musculaires</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="portfolio-item sportif">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card">
+                        <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Préparation sportive" 
+                             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Prévention blessures</h3>
+                                <p class="text-gray-200">Programme de renforcement pour éviter les blessures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajout d'exemples supplémentaires, modale d'aperçu -->
+                <div class="portfolio-item autre">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card cursor-pointer" data-modal-img="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" data-modal-title="Atelier prévention dos" data-modal-desc="Animation d'un atelier collectif sur la prévention des douleurs lombaires en entreprise.">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Atelier prévention dos" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Atelier prévention dos</h3>
+                                <p class="text-gray-200">Animation d'un atelier collectif en entreprise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item sportif">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card cursor-pointer" data-modal-img="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" data-modal-title="Préparation marathon" data-modal-desc="Accompagnement d'un groupe de coureurs pour la préparation d'un marathon.">
+                        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Préparation marathon" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Préparation marathon</h3>
+                                <p class="text-gray-200">Coaching et suivi sportif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item post-op">
+                    <div class="relative group overflow-hidden rounded-xl mirror-card cursor-pointer" data-modal-img="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" data-modal-title="Rééducation main post-op" data-modal-desc="Rééducation intensive après chirurgie de la main.">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Rééducation main post-op" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div class="text-center p-4">
+                                <h3 class="text-white text-xl font-bold mb-2">Rééducation main post-op</h3>
+                                <p class="text-gray-200">Programme personnalisé après chirurgie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modale d'aperçu portfolio -->
+        <div id="portfolio-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-8 relative animate-fade-in">
+                <button id="close-portfolio-modal" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 text-2xl" title="Fermer la modale"><i class="fas fa-times"></i></button>
+                <img id="modal-img" src="" alt="Aperçu projet" class="rounded-lg mb-6 w-full h-64 object-cover">
+                <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
+                <p id="modal-desc" class="text-gray-700"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="temoignages" class="py-20 bg-gradient-to-r from-blue-100 via-white to-blue-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800">Témoignages de Patients</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Ce que disent mes patients de mon travail et de mon approche thérapeutique.
+                </p>
+            </div>
+            <div class="relative overflow-hidden">
+                <div id="testimonial-marquee" class="flex space-x-8 min-w-max px-2 animate-marquee">
+                    <!-- Témoignage 1 -->
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Sophie L.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Après mon opération du genou, j'ai retrouvé une mobilité complète grâce au programme de rééducation personnalisé. Le professionnalisme et l'écoute ont fait toute la différence dans ma récupération."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Post-opératoire LCA</span>
+                        </div>
+                    </div>
+                    <!-- Témoignage 2 -->
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Pierre M.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Des années de douleurs lombaires résolues en quelques séances seulement. Les techniques manuelles utilisées ont été extrêmement efficaces. Je recommande vivement ce praticien."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Lombalgie chronique</span>
+                        </div>
+                    </div>
+                    <!-- Témoignage 3 -->
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Claire D.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "En tant que sportive de haut niveau, j'ai particulièrement apprécié l'approche globale et la connaissance des spécificités de mon sport. Ma récupération après blessure a été optimale."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Tendinite rotulienne</span>
+                        </div>
+                    </div>
+                    <!-- Dupliquer pour effet infini -->
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Sophie L.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Après mon opération du genou, j'ai retrouvé une mobilité complète grâce au programme de rééducation personnalisé. Le professionnalisme et l'écoute ont fait toute la différence dans ma récupération."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Post-opératoire LCA</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Pierre M.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Des années de douleurs lombaires résolues en quelques séances seulement. Les techniques manuelles utilisées ont été extrêmement efficaces. Je recommande vivement ce praticien."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Lombalgie chronique</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-md testimonial-card min-w-[340px] max-w-xs flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4 object-cover"> -->
+                            <div>
+                                <!-- <h4 class="font-bold text-gray-800">Claire D.</h4> -->
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "En tant que sportive de haut niveau, j'ai particulièrement apprécié l'approche globale et la connaissance des spécificités de mon sport. Ma récupération après blessure a été optimale."
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">Tendinite rotulienne</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section "Ils m'ont fait confiance" (logos défilants) -->
+    <section class="py-13 bg-white">
+        <div class="container mx-auto px-7">
+            <div class="text-center mb-9">
+                <h1 class="text-2xl font-bold text-gray-800">Ils m'ont fait confiance</h1>
+                <div class="w-17 h-1 bg-blue-600 mx-auto mt-2"></div>
+            </div>
+            <div class="relative overflow-hidden">
+                <div class="flex space-x-13 min-w-max animate-marquee-rtl" style="will-change: transform;">
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/5/6a/Tennis_Racket_Icon.png" alt="Vice Cup" class="h-16 grayscale opacity-80"> -->
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.uW5vTsaeK97GUJrdIzR5EQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ligue Nationale de Football" class="h-16 grayscale opacity-80">
+                    <img src="https://228foot.tg/files/teams/agaza%20fc.png" alt="Agaza FC" class="h-16 grayscale opacity-80">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.K4vI7o9QAwOzL7F1-ixxOwHaFR?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sopodiva" class="h-16 grayscale opacity-80">
+                    <img src="https://enamlome.tg/wp-content/uploads/2023/12/Logo.png" alt="ENAM-L" class="h-16 grayscale opacity-80">
+                    <!-- Dupliquer pour effet infini --> <!-- Dupliquer pour effet infini -->
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/5/6a/Tennis_Racket_Icon.png" alt="Vice Cup" class="h-16 grayscale opacity-80"> -->
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.uW5vTsaeK97GUJrdIzR5EQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ligue Nationale de Football" class="h-16 grayscale opacity-80">
+                    <img src="https://228foot.tg/files/teams/agaza%20fc.png" alt="Agaza FC" class="h-16 grayscale opacity-80">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.K4vI7o9QAwOzL7F1-ixxOwHaFR?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sopodiva" class="h-16 grayscale opacity-80">
+                    <img src="https://enamlome.tg/wp-content/uploads/2023/12/Logo.png" alt="ENAM-L" class="h-16 grayscale opacity-80">
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/5/6a/Tennis_Racket_Icon.png" alt="Vice Cup" class="h-16 grayscale opacity-80"> -->
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.uW5vTsaeK97GUJrdIzR5EQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ligue Nationale de Football" class="h-16 grayscale opacity-80">
+                    <img src="https://228foot.tg/files/teams/agaza%20fc.png" alt="Agaza FC" class="h-16 grayscale opacity-80">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.K4vI7o9QAwOzL7F1-ixxOwHaFR?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sopodiva" class="h-16 grayscale opacity-80">
+                    <img src="https://enamlome.tg/wp-content/uploads/2023/12/Logo.png" alt="ENAM-L" class="h-16 grayscale opacity-80">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-blue-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">Prendre Rendez-vous</h2>
+                <div class="w-20 h-1 bg-white mx-auto mt-4"></div>
+                <p class="mt-6 text-lg max-w-2xl mx-auto">
+                    Contactez-moi pour planifier une consultation ou pour toute question concernant vos besoins en kinésithérapie.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-xl p-8 shadow-lg text-gray-800 mirror-card">
+                    <h3 class="text-2xl font-bold mb-6">Formulaire de Contact</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Adresse email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Votre message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition shadow-lg">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Coordonnées</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-user text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Nom</h4>
+                                    <p class="text-blue-100">Hèziyè François Adjolou N'Gani</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Adresse</h4>
+                                    <p class="text-blue-100">Margo, Avéji-Lomé</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Téléphone</h4>
+                                    <p class="text-blue-100">+228 988 861 65</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p class="text-blue-100">francois.h.adjolou.ngani@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-id-card text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold">Permis</h4>
+                                    <p class="text-blue-100">Catégorie B</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Suivez-moi</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition" title="Facebook">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition" title="LinkedIn">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition" title="Instagram">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition" title="YouTube">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-bone text-white"></i>
+                        </div>
+                        <span class="text-xl font-semibold">KinéPro</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Kinésithérapeute diplômé d'État, spécialisé en rééducation fonctionnelle et thérapie manuelle.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens Utiles</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Conditions générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#experience" class="text-gray-400 hover:text-white transition">Expérience</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">
+                        Abonnez-vous à notre newsletter pour recevoir des conseils santé et des offres spéciales.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700 transition" title="Envoyer">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">
+                    &copy; 2023 KinéPro - Tous droits réservés
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-cc-visa text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-cc-mastercard text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-cc-paypal text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Boutons flottants -->
+    <div class="fixed bottom-8 right-8 flex flex-col items-end space-y-4 z-50">
+      <!-- Bouton WhatsApp -->
+      <a href="https://wa.me/22898886165" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center text-3xl transition transform hover:scale-110" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <!-- Bouton Retour en haut -->
+      <button id="back-to-top" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center text-2xl transition transform hover:scale-110 opacity-0 pointer-events-none" title="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+
+    <script>
+        // Counter animation
+        function animateCounter(id, target, duration = 2000) {
+            const element = document.getElementById(id);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                    if (id === 'satisfaction-counter') {
+                        element.textContent = current + '%';
+                    } else if (id === 'techniques-counter') {
+                        element.textContent = '+' + current;
+                    } else {
+                        element.textContent = '+' + current;
+                    }
+                } else {
+                    if (id === 'satisfaction-counter') {
+                        element.textContent = Math.floor(current) + '%';
+                    } else if (id === 'techniques-counter') {
+                        element.textContent = '+' + Math.floor(current);
+                    } else {
+                        element.textContent = '+' + Math.floor(current);
+                    }
+                }
+            }, 16);
+        }
+        
+        // Animate progress bars
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+        }
+        
+        // Portfolio filtering
+        function setupPortfolioFilter() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-blue-600', 'text-white'));
+                    filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-700'));
+                    button.classList.add('active', 'bg-blue-600', 'text-white');
+                    button.classList.remove('bg-gray-200', 'text-gray-700');
+                    
+                    // Filter items
+                    const filter = button.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.classList.contains(filter)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // On scroll animation
+        function setupScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start counters
+            animateCounter('years-counter', 15);
+            animateCounter('patients-counter', 2000);
+            animateCounter('satisfaction-counter', 98);
+            animateCounter('techniques-counter', 12);
+            
+            // Animate progress bars when they come into view
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressBars();
+                        progressObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                progressObserver.observe(bar);
+            });
+            
+            // Setup other functionality
+            setupPortfolioFilter();
+            setupSmoothScrolling();
+            setupScrollAnimations();
+        });
+
+        // Loader animé
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = 0;
+            setTimeout(() => loader.style.display = 'none', 700);
+        });
+
+        // Menu mobile slide-in
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        if (mobileMenuBtn && mobileMenu && closeMobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            });
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            });
+            // Fermer menu au clic sur un lien
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // Portfolio modale d'aperçu
+        const portfolioGrid = document.getElementById('portfolio-grid');
+        const portfolioModal = document.getElementById('portfolio-modal');
+        const closePortfolioModal = document.getElementById('close-portfolio-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        if (portfolioGrid && portfolioModal && closePortfolioModal) {
+            portfolioGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('.mirror-card[data-modal-img]');
+                if (card) {
+                    modalImg.src = card.getAttribute('data-modal-img');
+                    modalTitle.textContent = card.getAttribute('data-modal-title');
+                    modalDesc.textContent = card.getAttribute('data-modal-desc');
+                    portfolioModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+            closePortfolioModal.addEventListener('click', () => {
+                portfolioModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+            portfolioModal.addEventListener('click', (e) => {
+                if (e.target === portfolioModal) {
+                    portfolioModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Animations au scroll (fade/slide)
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            elements.forEach(el => observer.observe(el));
+        }
+        animateOnScroll();
+
+        // Animation cascade compétences
+        function animateSkillsCascade() {
+            document.querySelectorAll('.animate-skill-fade').forEach((el, i) => {
+                setTimeout(() => el.style.opacity = 1, i * 120);
+            });
+        }
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillsCascade();
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.bg-white.rounded-xl.p-8.shadow-md').forEach(card => {
+            skillsObserver.observe(card);
+        });
+
+        // PARTICULES MÉDICALES ANIMÉES
+        const icons = [
+            '<svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>', // croix
+            '<svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#10b981" stroke-width="2"/><path d="M8 12l2 2 4-4" stroke="#10b981" stroke-width="2" stroke-linecap="round"/></svg>', // coeur/check
+            '<svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="6" stroke="#f59e42" stroke-width="2"/><path d="M12 8v4" stroke="#f59e42" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#f59e42"/></svg>', // stéthoscope stylisé
+        ];
+        function spawnParticle() {
+            const container = document.getElementById('medical-particles');
+            if (!container) return;
+            const icon = icons[Math.floor(Math.random() * icons.length)];
+            const div = document.createElement('div');
+            div.innerHTML = icon;
+            div.style.position = 'absolute';
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.top = Math.random() * 100 + 'vh';
+            div.style.opacity = 0.2 + Math.random() * 0.3;
+            div.style.transform = `scale(${0.7 + Math.random() * 0.8})`;
+            div.style.transition = 'transform 10s linear, opacity 10s linear';
+            container.appendChild(div);
+            setTimeout(() => {
+                div.style.transform += ' translateY(-100vh)';
+                div.style.opacity = 0;
+            }, 100);
+            setTimeout(() => container.removeChild(div), 10000);
+        }
+        setInterval(spawnParticle, 800);
+
+        // Bouton retour en haut
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'pointer-events-none');
+          } else {
+            backToTop.classList.add('opacity-0', 'pointer-events-none');
+          }
+        });
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

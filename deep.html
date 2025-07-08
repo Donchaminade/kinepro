@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Jean Dupont - Kinésithérapeute d'État</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        accent: '#10B981',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .mirror-card {
+                @apply relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:backdrop-blur-lg before:rounded-xl;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+            .mirror-card::after {
+                content: '';
+                @apply absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl -z-10;
+                transform: rotate(2deg) scale(0.98);
+            }
+            .stats-card {
+                @apply bg-white bg-opacity-10 backdrop-blur-md border border-white/20 rounded-xl p-6;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen font-sans text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-primary">Dr. Jean Dupont</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#accueil" class="text-gray-700 hover:text-primary px-3 py-2 font-medium transition-colors">Accueil</a>
+                        <a href="#services" class="text-gray-700 hover:text-primary px-3 py-2 font-medium transition-colors">Services</a>
+                        <a href="#experiences" class="text-gray-700 hover:text-primary px-3 py-2 font-medium transition-colors">Expériences</a>
+                        <a href="#galerie" class="text-gray-700 hover:text-primary px-3 py-2 font-medium transition-colors">Galerie</a>
+                        <a href="#temoignages" class="text-gray-700 hover:text-primary px-3 py-2 font-medium transition-colors">Témoignages</a>
+                        <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Dr. Jean Dupont <span class="text-primary">Kinésithérapeute</span></h1>
+                <p class="text-lg text-gray-600 mb-8">Spécialiste en rééducation fonctionnelle et thérapie manuelle avec 15 ans d'expérience au service de votre bien-être.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-medium transition-colors">Prendre rendez-vous</a>
+                    <a href="#services" class="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">Nos services</a>
+                </div>
+            </div>
+            <div class="animate-float">
+                <div class="mirror-card overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" 
+                         alt="Dr. Jean Dupont en consultation" 
+                         class="w-full h-auto object-cover rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="stats-card animate-slide-up">
+                    <h3 class="text-4xl font-bold mb-2">15+</h3>
+                    <p class="text-sm opacity-90">Années d'expérience</p>
+                </div>
+                <div class="stats-card animate-slide-up" style="animation-delay: 0.2s">
+                    <h3 class="text-4xl font-bold mb-2">5,000+</h3>
+                    <p class="text-sm opacity-90">Patients accompagnés</p>
+                </div>
+                <div class="stats-card animate-slide-up" style="animation-delay: 0.4s">
+                    <h3 class="text-4xl font-bold mb-2">98%</h3>
+                    <p class="text-sm opacity-90">Satisfaction clients</p>
+                </div>
+                <div class="stats-card animate-slide-up" style="animation-delay: 0.6s">
+                    <h3 class="text-4xl font-bold mb-2">12</h3>
+                    <p class="text-sm opacity-90">Techniques maîtrisées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Services Spécialisés</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Des soins personnalisés adaptés à chaque patient pour une rééducation optimale.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-bone text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Rééducation Orthopédique</h3>
+                <p class="text-gray-600">Traitement post-opératoire et rééducation après fractures, entorses ou chirurgies orthopédiques.</p>
+            </div>
+            
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-running text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Kiné du Sport</h3>
+                <p class="text-gray-600">Prévention et traitement des blessures sportives pour athlètes amateurs et professionnels.</p>
+            </div>
+            
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-child text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Kiné Pédiatrique</h3>
+                <p class="text-gray-600">Prise en charge spécifique des troubles moteurs et posturaux chez l'enfant et l'adolescent.</p>
+            </div>
+            
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-wheelchair text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Rééducation Neurologique</h3>
+                <p class="text-gray-600">Accompagnement pour AVC, SEP, Parkinson et autres pathologies neurologiques.</p>
+            </div>
+            
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-lungs text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Kiné Respiratoire</h3>
+                <p class="text-gray-600">Traitement des affections respiratoires (BPCO, asthme, bronchiolite...).</p>
+            </div>
+            
+            <div class="mirror-card p-6 bg-white rounded-xl hover:shadow-xl transition-shadow">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-user-md text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Thérapie Manuelle</h3>
+                <p class="text-gray-600">Techniques spécifiques de mobilisation pour douleurs articulaires et musculaires.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experiences" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mon Parcours Professionnel</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">15 ans d'expertise au service de la rééducation et du bien-être.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline bar -->
+                <div class="hidden md:block absolute left-1/2 h-full w-1 bg-primary/20 -translate-x-1/2"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <!-- Item 1 -->
+                    <div class="relative md:grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:text-right mb-6 md:mb-0 md:pr-8 animate-slide-up">
+                            <h3 class="text-xl font-bold text-gray-900">CHU de Paris - Kinésithérapeute</h3>
+                            <p class="text-primary font-medium">2018 - Présent</p>
+                            <p class="text-gray-600 mt-2">Service de rééducation neurologique et orthopédique. Prise en charge des patients post-AVC et post-opératoires.</p>
+                        </div>
+                        <div class="hidden md:flex justify-center">
+                            <div class="w-6 h-6 rounded-full bg-primary border-4 border-white shadow-md"></div>
+                        </div>
+                        <div class="md:pl-8 animate-slide-up" style="animation-delay: 0.2s">
+                            <div class="mirror-card p-6 bg-white rounded-lg">
+                                <h4 class="font-semibold mb-2">Réalisations clés :</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Mise en place d'un protocole innovant de rééducation post-AVC</li>
+                                    <li>Collaboration avec une équipe pluridisciplinaire</li>
+                                    <li>Formation des internes en kinésithérapie</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="relative md:grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:order-2 md:text-left mb-6 md:mb-0 md:pl-8 animate-slide-up">
+                            <h3 class="text-xl font-bold text-gray-900">Centre de Rééducation Fonctionnelle - Lyon</h3>
+                            <p class="text-primary font-medium">2012 - 2018</p>
+                            <p class="text-gray-600 mt-2">Kinésithérapeute spécialisé en traumatologie du sport. Prise en charge d'athlètes professionnels.</p>
+                        </div>
+                        <div class="hidden md:flex justify-center md:order-1">
+                            <div class="w-6 h-6 rounded-full bg-primary border-4 border-white shadow-md"></div>
+                        </div>
+                        <div class="md:pr-8 md:order-3 animate-slide-up" style="animation-delay: 0.2s">
+                            <div class="mirror-card p-6 bg-white rounded-lg">
+                                <h4 class="font-semibold mb-2">Réalisations clés :</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Rééducation de sportifs de haut niveau (football, rugby, athlétisme)</li>
+                                    <li>Développement de programmes de prévention des blessures</li>
+                                    <li>Collaboration avec des médecins du sport</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="relative md:grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:text-right mb-6 md:mb-0 md:pr-8 animate-slide-up">
+                            <h3 class="text-xl font-bold text-gray-900">Cabinet Libéral - Marseille</h3>
+                            <p class="text-primary font-medium">2008 - 2012</p>
+                            <p class="text-gray-600 mt-2">Kinésithérapeute généraliste avec orientation en thérapie manuelle et rééducation posturale.</p>
+                        </div>
+                        <div class="hidden md:flex justify-center">
+                            <div class="w-6 h-6 rounded-full bg-primary border-4 border-white shadow-md"></div>
+                        </div>
+                        <div class="md:pl-8 animate-slide-up" style="animation-delay: 0.2s">
+                            <div class="mirror-card p-6 bg-white rounded-lg">
+                                <h4 class="font-semibold mb-2">Réalisations clés :</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Développement d'une clientèle fidèle</li>
+                                    <li>Spécialisation en techniques de thérapie manuelle</li>
+                                    <li>Formation continue en rééducation posturale</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galerie" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Galerie d'Interventions</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez nos techniques et installations professionnelles.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Séance de kinésithérapie" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Rééducation post-opératoire</h3>
+                    <p class="text-gray-600 text-sm">Techniques de récupération articulaire</p>
+                </div>
+            </div>
+            
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Thérapie manuelle" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Thérapie manuelle</h3>
+                    <p class="text-gray-600 text-sm">Techniques de mobilisation spécifique</p>
+                </div>
+            </div>
+            
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Séance pédiatrique" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Kinésithérapie pédiatrique</h3>
+                    <p class="text-gray-600 text-sm">Approche adaptée aux jeunes patients</p>
+                </div>
+            </div>
+            
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Rééducation sportive" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Kiné du sport</h3>
+                    <p class="text-gray-600 text-sm">Préparation et récupération athlétique</p>
+                </div>
+            </div>
+            
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Équipement moderne" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Équipement de pointe</h3>
+                    <p class="text-gray-600 text-sm">Technologies au service de la rééducation</p>
+                </div>
+            </div>
+            
+            <div class="mirror-card overflow-hidden rounded-xl group">
+                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Cabinet professionnel" 
+                     class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Environnement professionnel</h3>
+                    <p class="text-gray-600 text-sm">Cabinet conçu pour votre confort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="temoignages" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Témoignages de Patients</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ce que disent ceux qui nous ont fait confiance.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="mirror-card p-6 bg-white rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Marie L." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Marie L.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Après mon opération du genou, le Dr. Dupont m'a accompagnée avec professionnalisme et bienveillance. Grâce à ses techniques, j'ai retrouvé une mobilité complète plus rapidement que prévu."</p>
+                </div>
+                
+                <div class="mirror-card p-6 bg-white rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pierre M." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Pierre M.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"En tant que sportif amateur, je souffrais de douleurs chroniques au dos. Le Dr. Dupont a identifié la cause et m'a proposé un traitement adapté. Aujourd'hui, je peux reprendre le sport sans douleur."</p>
+                </div>
+                
+                <div class="mirror-card p-6 bg-white rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sophie T." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sophie T.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"La prise en charge de mon enfant pour des problèmes posturaux a été exceptionnelle. Le Dr. Dupont sait adapter son approche aux plus jeunes avec patience et pédagogie."</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <div class="inline-flex items-center bg-primary/10 text-primary px-6 py-3 rounded-full">
+                    <i class="fas fa-star mr-2"></i>
+                    <span class="font-medium">98% de satisfaction client sur 250+ avis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Prenez Rendez-vous</h2>
+                <p class="text-lg text-gray-600 mb-8">Pour toute question ou prise de rendez-vous, n'hésitez pas à nous contacter.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary mr-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Adresse</h4>
+                            <p class="text-gray-600">123 Rue de la Santé, 75015 Paris</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary mr-4">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Téléphone</h4>
+                            <p class="text-gray-600">01 23 45 67 89</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Email</h4>
+                            <p class="text-gray-600">contact@drjeandupont-kine.fr</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary mr-4">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Horaires</h4>
+                            <p class="text-gray-600">Lundi-Vendredi : 8h-20h<br>Samedi : 9h-13h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mirror-card bg-white p-8 rounded-xl animate-slide-up">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Formulaire de Contact</h3>
+                <form>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Motif de consultation</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                <option value="">Sélectionnez un motif</option>
+                                <option value="orthopedique">Rééducation orthopédique</option>
+                                <option value="sport">Kiné du sport</option>
+                                <option value="neurologique">Rééducation neurologique</option>
+                                <option value="respiratoire">Kiné respiratoire</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="w-full bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-medium transition-colors">Envoyer la demande</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Dr. Jean Dupont</h3>
+                    <p class="text-gray-400">Kinésithérapeute d'État spécialisé en rééducation fonctionnelle et thérapie manuelle.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#experiences" class="text-gray-400 hover:text-white transition-colors">Expériences</a></li>
+                        <li><a href="#galerie" class="text-gray-400 hover:text-white transition-colors">Galerie</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Rééducation orthopédique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kiné du sport</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Rééducation neurologique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Thérapie manuelle</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Réseaux sociaux</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <a href="#contact" class="inline-flex items-center text-sm font-medium text-white bg-primary hover:bg-secondary px-4 py-2 rounded-lg transition-colors">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            Prendre rendez-vous
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2023 Dr. Jean Dupont - Tous droits réservés</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
